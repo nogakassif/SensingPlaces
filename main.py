@@ -29,22 +29,24 @@ def createMyMap(locationsFilePath: str, outputMapPath: str, numOfPlaces: int) ->
     my_map.save(f"{outputMapPath}//MyMapTop{numOfPlaces}.html")
 
 
-def get_user_directions(locationsFilePath:str) -> None:
+def get_user_directions(locations_file_path:str) -> None:
     """
         Gets user input for origin and destination, and displays the walking route directions.
 
         Args:
-            locationsFilePath (str): Path to the CSV file containing location data.
+            locations_file_path (str): Path to the CSV file containing location data.
     """
     origin = input("Enter your origin: ")
     destination = input("Enter the destination: ")
-    personalDirections.main(origin, destination, locationsFilePath)
+    max_detour = int(input("Enter maximum acceptable detour time in seconds: "))
+    personalDirections.main(origin, destination, locations_file_path, max_detour)
 
 
 if __name__ == '__main__':
-    locationsFilePath = "output//new_filtered_locations.csv"
-    outputMapPath = "output"
-    createMyMap(locationsFilePath, outputMapPath, 16)
+    # locations_file_path = "output//new_filtered_locations.csv"
+    # output_map_path = "output"
+    # createMyMap(locations_file_path, output_map_path, 16)
 
     # get directions:
-    # get_user_directions(locationsFilePath)
+    locations_file_path="output//picked_locations.csv"
+    get_user_directions(locations_file_path)

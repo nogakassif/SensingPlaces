@@ -66,27 +66,29 @@ def get_google_maps_route_link(origin: str, destination: str) -> str:
     return route_link
 
 
-def main(origin: str, destination: str, locationsFilePath: str):
+def main(origin: str, destination: str, locations_file_path: str, max_detour_length: int):
     """
         Main function to find an optimal waypoint and generate a Google Maps walking route link.
 
         Args:
             origin (str): The starting location.
             destination (str): The final destination.
-            locationsFilePath (str): Path to the CSV file containing locations data.
+            locations_file_path (str): Path to the CSV file containing locations data.
+            max_detour_length (int): Maximum acceptable detour time in seconds.
 
         Returns:
             None
         """
     # Read CSV file with UTF-8 encoding :
     myPlaces = {}
-    with open(locationsFilePath, 'r', encoding='utf-8') as csvfile:
+    with open(locations_file_path, 'r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             key = row.pop('address')
             myPlaces[key] = row
 
-    optimal_waypoint = find_optimal_waypoint(origin, destination, myPlaces)
+    optimal_waypoint = find_optimal_waypoint(origin, destination, myPlaces,
+                                             max_detour_length=max_detour_length)
 
     if optimal_waypoint:
         print(f"Go to {optimal_waypoint[1]['name']}, and then follow the instructions:\n",
