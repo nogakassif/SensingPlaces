@@ -2,7 +2,7 @@ from typing import List, Optional, Tuple
 
 import requests
 
-API_KEY = "AIzaSyAveQztGNMRYLO9JMx3T1B3Wz0aY4tYQCI"
+API_KEY = "ENTER_YOUR_API_KEY_HERE"
 BASE_URL_DIRECTIONS = "https://maps.googleapis.com/maps/api/directions/json?"
 BASE_URL_GEOCODE = "https://maps.googleapis.com/maps/api/geocode/json?"
 
